@@ -1,61 +1,58 @@
-# NYCU CG2023 Homework 2
+# write a program based on the provided template that implementes several shader effect on different texture with GLSL
 
-## Dependencies
+## Lighting
+- point light
+- ![image](https://github.com/Yang-Shun-Yu/computer-graph/blob/master/LightShader/pointlighting.png)
+- directional light
+- ![image](https://github.com/Yang-Shun-Yu/computer-graph/blob/master/LightShader/directionallighting.png)
+- spot light
+- ![image](https://github.com/Yang-Shun-Yu/computer-graph/blob/master/LightShader/spotlighting.png)
+## Features
 
-- [glfw](https://github.com/glfw/glfw)
-- [glad](https://github.com/Dav1dde/glad)
-- [glm](https://github.com/g-truc/glm)
+- **Materials:** Three different materials are defined - Flat White, Shiny Red, and Clear Blue. These materials have specific ambient, diffuse, specular, and shininess properties.
 
-### Dependencies for Windows
+- **Programs:** Three shader programs are used - ExampleProgram, BasicProgram, and LightProgram. These programs handle the rendering process with different shading techniques.
 
-Visual Studio
+- **Models:** Various 3D models are loaded, including a cube, a mug, a bottle, and a custom plane. These models have associated textures, scaling, and positioning.
 
-### Dependencies for macOS
+- **Objects:** Objects in the scene are instances of models with specific transformations (translations, rotations, and scalings). Each object can have its own material and texture.
 
-Xcode
+- **Lighting:** The program supports directional, point, and spot lights. Lighting parameters such as color, position, and attenuation can be adjusted. The shaders calculate ambient, diffuse, and specular lighting for each light type.
 
-### Dependencies for Unix-like systems other than macOS with X11
+- **Camera:** The scene is viewed through a camera that can be controlled using keyboard input. The camera supports movement and rotation.
 
-On *Debian* and derivatives like *Ubuntu* and *Linux Mint*
+## Setup and Execution
 
-`sudo apt install xorg-dev`
+1. **Dependencies:**
+   - GLFW
+   - GLAD
+   - GLM
 
-On *Fedora* and derivatives like *Red Hat*
+2. **Build:**
+   - Make sure to link the necessary libraries (GLFW, GLAD) in your build system.
+   - Compile the program using a C++ compiler (e.g., g++).
 
-`sudo dnf install libXcursor-devel libXi-devel libXinerama-devel libXrandr-devel`
+      ```bash
+      g++ main.cpp gl_helper.cpp camera.cpp context.cpp model.cpp opengl_context.cpp program.cpp utils.cpp -o main -lglfw -ldl
+      ```
 
-On *FreeBSD*
+3. **Run:**
+   - Execute the compiled program.
 
-`pkg install xorgproto`
+      ```bash
+      ./main
+      ```
 
-## Build instruction
+4. **Controls:**
+   - Use the arrow keys to move the camera.
+   - Press F9 to toggle mouse cursor visibility (useful for camera control).
+   - Press keys 1-6 to switch between different shader programs and enable/disable lights.
+   - Press keys K, L, I, O to interactively control light positions.
 
-### CMake
+## Additional Notes
 
-Build in release mode
-```bash=
-cmake -S . -B build -D CMAKE_BUILD_TYPE=Release
-cmake --build build --config Release --parallel 8
-cd bin
-./HW2
-```
+- The program allows for easy extension by adding new materials, models, and objects.
+- Shaders can be modified for experimentation with different lighting models.
 
-Build in debug mode
-```bash=
-cmake -S . -B build -D CMAKE_BUILD_TYPE=Debug
-cmake --build build --config Debug --parallel 8
-cd bin
-./HW2
-```
-
-### Visual Studio 2019
-
-- Open `vs2019/HW2.sln`
-- Select config then build (CTRL+SHIFT+B)
-- Use F5 to debug or CTRL+F5 to run.
-
-
-### Assets soruce
-+ https://www.cgtrader.com/free-3d-models/textures/miscellaneous/wood-texture-01
-+ https://www.cgtrader.com/free-3d-models/household/kitchenware/mug-set-f1930d59-e3a7-42fa-8634-ac8a44449dc6
-+ https://www.cgtrader.com/free-3d-models/various/various-models/default-cube-fd46b883-71f4-443f-877d-3669dc0ad9ce
+## Demo
+![image](https://github.com/Yang-Shun-Yu/computer-graph/blob/master/LightShader/texturesthreelight.png)
