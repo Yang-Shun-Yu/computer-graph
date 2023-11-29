@@ -1,55 +1,53 @@
-# NYCU CG2023 Homework 1
+# Flight Simulator
+This flight simulator project utilizes OpenGL for rendering a simple airplane model in a 3D environment. Below is an overview of key components and functionalities in the provided code.
+# Flight Simulator
 
-## Dependencies
+This flight simulator project utilizes OpenGL for rendering a simple airplane model in a 3D environment. Below is an overview of key components and functionalities in the provided code.
 
-- [glfw](https://github.com/glfw/glfw)
-- [glad](https://github.com/Dav1dde/glad)
-- [glm](https://github.com/g-truc/glm)
+## Camera
 
-### Dependencies for Windows
+The `updateViewMatrix` function in the `Camera` class calculates the view matrix based on the camera's position, rotation, and orientation. It follows these steps:
 
-Visual Studio
+1. Converts the rotation quaternion to a rotation matrix (`rotationMatrix`).
+2. Applies the rotation matrix to the original front and up vectors to get the new front and up vectors.
+3. Calculates the right vector using the cross product of the new front and up vectors.
+4. Constructs the view matrix using the right, up, front, and position vectors.
 
-### Dependencies for macOS
+## Projection Matrix
 
-Xcode
+The `updateProjectionMatrix` function in the `Camera` class calculates the perspective projection matrix. It sets up the field of view (FOV), near and far clipping planes, and calculates the matrix components (`a`, `b`, `c`, `d`). The projection matrix is then filled using these components.
 
-### Dependencies for Unix-like systems other than macOS with X11
+## Main.cpp
 
-On *Debian* and derivatives like *Ubuntu* and *Linux Mint*
+- **Window Title:** The window title is set to "HW1 - 312555017" in the provided code.
+- **Rendering Components:** The TODO#2 section instructs the rendering of the airplane's body, wings, and tail.
 
-`sudo apt install xorg-dev`
+## Rendering Functions
 
-On *Fedora* and derivatives like *Red Hat*
+### Airplane Body (`drawAirplaneBody`):
 
-`sudo dnf install libXcursor-devel libXi-devel libXinerama-devel libXrandr-devel`
+- Uses `drawCylinder` to render the cylindrical body of the airplane.
+- Sets the body color using `glColor3f`.
 
-On *FreeBSD*
+### Wings (`drawLeftWing`, `drawRightWing`):
 
-`pkg install xorgproto`
+- Uses `drawCuboid` to render the wings of the airplane.
+- Sets the wing color using `glColor3f`.
 
-## Build instruction
+### Tail (`drawTetrahedron`):
 
-### CMake
+- Uses `calculateNormal` and `glNormal3fv` for lighting (optional).
+- Sets the tail color using `glColor3f`.
+- Draws a tetrahedron representing the tail of the airplane.
 
-Build in release mode
-```bash=
-cmake -S . -B build -D CMAKE_BUILD_TYPE=Release
-cmake --build build --config Release --parallel 8
-cd bin
-./HW1
-```
+### Propeller (`DrawPropeller`, `drawBlades`):
 
-Build in debug mode
-```bash=
-cmake -S . -B build -D CMAKE_BUILD_TYPE=Debug
-cmake --build build --config Debug --parallel 8
-cd bin
-./HW1
-```
+- Draws the propeller body using `drawCylinder`.
+- Draws two blades using `drawCuboid`, applying rotation based on `PropellerAngle`.
+- Sets the propeller and blade color using `glColor3f`.
 
-### Visual Studio 2019
+## Recommendations
 
-- Open `vs2019/HW1.sln`
-- Select config then build (CTRL+SHIFT+B)
-- Use F5 to debug or CTRL+F5 to run.
+- Ensure that the necessary OpenGL libraries are linked properly.
+- Verify that the quaternion-to-matrix conversion is implemented correctly.
+- Check the rotation and translation operations in rendering functions.
