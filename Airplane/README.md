@@ -51,3 +51,7 @@ The `updateProjectionMatrix` function in the `Camera` class calculates the persp
 - Ensure that the necessary OpenGL libraries are linked properly.
 - Verify that the quaternion-to-matrix conversion is implemented correctly.
 - Check the rotation and translation operations in rendering functions.
+## Demo
+
+![image](https://github.com/Yang-Shun-Yu/computer-graph/blob/master/Airplane/airplaneimage.png)
+   
